@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # Backend + Frontend (combined)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rag-investment-analysis
+    ports:
+      - "8000:8000"
+    environment:
+      - EMBEDDING_MODEL=${EMBEDDING_MODEL:-simple}
+      - LLM_MODEL=${LLM_MODEL:-simple}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - HUGGINGFACE_API_TOKEN=${HUGGINGFACE_API_TOKEN:-}
+      - VECTOR_STORE_BACKEND=${VECTOR_STORE_BACKEND:-chroma}
+      - HOST=0.0.0.0
+      - PORT=8000
+      - ENVIRONMENT=production
+    volumes:
+      - chroma_data:/app/chroma_db
+      - uploads_data:/app/uploads
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  chroma_data:
+    driver: local
+  uploads_data:
+    driver: local
