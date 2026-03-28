@@ -1,3 +1,13 @@
+---
+title: RAG Investment Analysis
+emoji: 📚
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_port: 8000
+pinned: false
+---
+
 # 🤖 RAG Investment Analysis
 
 A Retrieval-Augmented Generation (RAG) system for analyzing investment textbooks. Upload a PDF, ask questions, and get AI-powered answers with source citations.

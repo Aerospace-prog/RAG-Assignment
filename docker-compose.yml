@@ -15,7 +15,6 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY:-}
       - HUGGINGFACE_API_TOKEN=${HUGGINGFACE_API_TOKEN:-}
       - VECTOR_STORE_BACKEND=${VECTOR_STORE_BACKEND:-chroma}
-      - HOST=0.0.0.0
       - PORT=8000
       - ENVIRONMENT=production
     volumes:
